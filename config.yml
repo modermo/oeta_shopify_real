@@ -1,0 +1,12 @@
+---
+:api_key: d448b254432d18d3e5ddcf7d3b2ef8cd
+:password: 0313548357836d79378fe8c171222141
+:store: oeta.myshopify.com
+:theme_id: '9903848'
+:whitelist_files:
+- layout/
+- assets/
+- config/
+- snippets/
+- templates/
+- locales/

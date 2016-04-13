@@ -1,0 +1,107 @@
+{% capture collection_handle %}{{ product-loop | handleize }}{% endcapture %}
+{% capture url %}{% if collection_handle != "" %}/collections/{{ product-loop }}{{ product.url }}{% else %}{{ product.url }}{% endif %}{% endcapture %}
+<div class="product span3 {% if template == 'collection' %}adaptive-grid{% endif %} js-size-filter {% for variant in product.variants %}{% if variant.available %}size-{{ variant.title }} {% endif %}{% endfor %}">
+
+  {% if product.price_min < product.compare_at_price_min %}
+    {% if settings.show_sale_circle %}
+    <span class="circle sale">{{ 'collections.general.sale' | t }}</span>
+    {% endif %}
+  {% endif %}
+
+  <div class="image">
+    <a href="{{ url }}">
+      <img src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.title | escape  }}" />
+    </a>
+  </div>
+
+  <div class="details">
+    <a href="{{ url }}" class="clearfix">
+      <h4 class="title">{{ product.title }}</h4>
+      <!--
+      {% if settings.product_vendor %}
+      <span class="vendor">{{ product.vendor }}</span>
+      {% endif %}
+		-->
+      
+      <span class="price">
+      {% if product.available and product.price > 0 %}
+        
+          {% if product.compare_at_price_max > product.price %}
+            <del>{{ product.compare_at_price | money }}</del>
+          {% endif %}
+        
+        	
+
+          {% if product.price_varies %}
+          <small><em>{{ 'collections.general.from' | t }}</em></small>
+          {% endif %}
+       
+          {{ product.price | money }}
+        
+      	  {% if product.tags contains 'Feature tiles' %}
+            <span>each</span>
+          {% elsif product.tags contains 'Base tile' %}
+             <span>/m2</span>	
+          {% elsif product.tags contains 'Border tile' %}
+               <span>/linear meter</span>
+          {% endif %}
+        
+        	<br/>
+       	  {% if product.tags contains 'Exclusive' %}
+            <span>OETA Exclusive</span>
+          {% endif %}
+        
+        
+        
+      {% else %}
+        
+        Instore price only.<a href="/pages/contact-quote">Get a quote</a>
+        
+      {% endif %}
+        
+      
+      <div class="sizes">  
+        {% for option in product.options %}
+          {% if option == 'Size' %}
+            {% assign index = forloop.index0 %}
+            {% assign sizelist = '' %}
+            {% assign size = '' %}
+            
+        	{% for variant in product.variants %}
+              {% capture size %}
+                {{ variant.options[index] }}
+              {% endcapture %}
+              
+        	  {% unless sizelist contains size %}
+           
+              <span>{{ size }}</span>
+        
+                {% capture tempList %}
+                  {{sizelist | append: size | append: ‘ ‘}}
+                {% endcapture %}
+                
+        		{% assign sizelist = tempList %}
+              
+        	  {% endunless %}
+        
+            {% endfor %}
+        
+          {% endif %}
+        {% endfor %}
+        </div>
+        
+        
+        
+       
+       
+        
+      </span>
+
+    </a>
+  </div>
+
+</div>
+
+{% unless template contains 'collection' %}
+{% cycle 'clear-product-loop': '', '', '', '<div style="clear:both;"></div>' %}
+{% endunless %}

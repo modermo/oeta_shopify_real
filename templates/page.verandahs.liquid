@@ -1,0 +1,46 @@
+<div id="page" class="row">
+  
+  <div class="span12 details">
+
+    
+    <ul>
+    {% for link in linklists.gallery-sub-navigation.links %}
+      <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+    {% endfor %}
+    </ul>
+    
+    <h1 class="p25">{{ page.title }}</h1>
+    
+    <div id="galleria"></div>
+    
+    
+    {{ page.content }}
+    
+    
+    
+    
+    <script>
+
+    // Load the classic theme
+    Galleria.loadTheme('https://cdn.shopify.com/s/files/1/0258/6727/t/3/assets/galleria.classic.min.js');
+      
+    // Initialize Galleria
+    Galleria.run('#galleria', {
+      
+      responsive:true,
+      height:0.5625,
+      
+        // search flickr for "galleria"
+        flickr: 'set:72157654564249118',
+        
+        flickrOptions: {
+            // sort by interestingness
+            sort: 'interestingness-desc'
+        }
+    });
+    </script>
+    
+
+  </div>
+  
+</div>

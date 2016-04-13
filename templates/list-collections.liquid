@@ -1,0 +1,61 @@
+<div id="collection" class="row">
+  <div class="span12">
+    <h1><span>{{ 'collections.list_collections.title' | t }}</span></h1>
+  </div> <!-- /.span12 -->
+</div> <!-- /.row -->
+
+<div class="row products masonry collection-type">
+  
+  
+  
+  <h1>Tessellated Tiles</h1>
+  {% for link in linklists.tessellated-tiles.links %}
+    {% assign collection = link.object %}
+  	{% include 'collection-loop' %}
+  {% endfor %}
+  
+  <h1>Mosaics</h1>
+  {% for link in linklists.mosaics.links %}
+    {% assign collection = link.object %}
+  	{% include 'collection-loop' %}
+  {% endfor %}
+  
+  <h1>Bluestone Bullnose and Garden edging</h1>
+  {% for link in linklists.bluestone-bullnose-and-garden-edging.links %}
+    {% assign collection = link.object %}
+  	{% include 'collection-loop' %}
+  {% endfor %}
+  
+  <h1>Heritage</h1>
+  {% for link in linklists.heritage.links %}
+    {% assign collection = link.object %}
+  {% include 'collection-loop' %}
+  {% endfor %}
+  
+  <h1>Wall Tiles and World Tiles</h1>
+  {% for link in linklists.wall-tiles-and-world-tiles.links %}
+    {% assign collection = link.object %}
+  {% include 'collection-loop' %}
+  {% endfor %}
+  
+  <h1>Hand Painted Panels</h1>
+  {% for link in linklists.hand-painted-panels.links %}
+    {% assign collection = link.object %}
+  {% include 'collection-loop' %}
+  {% endfor %}
+  
+  <h1>Basins, Baths, Toilets and Bidet</h1>
+  {% for link in linklists.basins-baths-toilets-and-bidet.links %}
+    {% assign collection = link.object %}
+  {% include 'collection-loop' %}
+  {% endfor %}
+  
+  <h1>Tap ware, Showers and Accessories</h1>
+  {% for link in linklists.tap-ware-showers-and-accessories.links %}
+    {% assign collection = link.object %}
+  {% include 'collection-loop' %}
+  {% endfor %}
+  
+  
+  
+</div> <!-- /#collection.row -->
